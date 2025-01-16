@@ -1,12 +1,21 @@
 import os
 
+def operation_type():
+    while True:
+        operator= input("Entrez le type d'opération désiré (+, -, *, /, %, //, **) : ")
+        if operator in ["+", "-", "*", "/", "%", "//", "**"]:
+            return operator
+        else:
+            print("Erreur : opération invalide. Veuillez choisir parmi (+, -, *, /, %, //, **).")
+
 # ---------------------------------------------------------------------------------------
 def math_expression():
     try: 
+        
         os.system('cls' if os.name == 'nt' else 'clear') #refresh terminal
         
         num_a = float(input("\nChoose first number to operate : "))
-        v= operation_type()
+        operator = operation_type()
         num_b = float(input("Choose second number : "))
         print()
         
@@ -15,12 +24,12 @@ def math_expression():
             
             os.system('cls' if os.name == 'nt' else 'clear')  # refresh terminal
             
-            print(f"Asked operation : {num_a} {v} {num_b} \n")
+            print(f"Asked operation : {num_a} {operator} {num_b} \n")
             
             #---------------------------------------------------------------------
             # result with 'int' return checked
             print("result : \n")
-            if v == "+":
+            if operator == "+":
                 result = num_a + num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
@@ -37,7 +46,7 @@ def math_expression():
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "-":
+            elif operator == "-":
                 result = num_a - num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
@@ -54,7 +63,7 @@ def math_expression():
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "*":
+            elif operator == "*":
                 result = num_a * num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
@@ -71,7 +80,7 @@ def math_expression():
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "/": # need to fix /0 value impossible
+            elif operator == "/": # need to fix /0 value impossible
                 result = num_a / num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
@@ -88,7 +97,7 @@ def math_expression():
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()            
-            elif v == "//":
+            elif operator == "//":
                 result = num_a // num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
@@ -105,7 +114,7 @@ def math_expression():
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "**":
+            elif operator == "**":
                 result = num_a ** num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
@@ -122,7 +131,7 @@ def math_expression():
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "%": # need to fix 0 value and float value impossible
+            elif operator == "%": # need to fix 0 value and float value impossible
                 result = num_a % num_b               
                 if isinstance(num_a, float) and isinstance(num_b, float):
                     print (f"                  {int(result) if result.is_integer else result} \n")                   
