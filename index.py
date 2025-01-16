@@ -1,7 +1,41 @@
 import os
 
+
+#SAMY'S FUNCTIONS ------------------------------------------------------------------------------------------------------
+
+
+def error_management(a,b,operator):
+    if type(a) not in [int, float, complex] or type(b) not in [int, float,complex]:
+        return ("Error: a and b must be numbers")
+    elif operator not in ["+", "-", "*", "/","//","%","**"]:
+        return ("Error: operator must be '+' or '-' or '*' or '/' or '//' or '%' or '**'")
+    elif operator == "/" and b == 0:
+        raise ZeroDivisionError
+    else:
+        pass
+
+def clear_history(history:list):
+    history.clear()
+    return "History cleared."
+
+def check_int(a):
+    float(a)
+    if a % 2 == 0:
+        int(a)
+    if a % 3 == 0:
+        int(a)
+    if a % 5 == 0:
+        int(a)
+    if a % 7 == 0:
+        int(a)
+    else:
+        pass
+    return a
+
+
+#CESAR'S FUNCTIONS ------------------------------------------------------------------------------------------------------
 def operation_type():
-   v= input("operator: ")
+   v= input("operator: ") 
    return v
 
 def check_int(x):    
@@ -17,7 +51,9 @@ def check_int(x):
             float(x)
                 
 
-def math_expression():
+
+
+def math_expression(num_a, num_b, v):
     try: 
         os.system('cls' if os.name == 'nt' else 'clear')
         num_a = float(input("\nChoose first number to operate : "))
