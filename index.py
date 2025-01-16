@@ -179,7 +179,7 @@ def main():
     nomber2 = ask_nomber("Enter the second nomber.")
     operation = operation_type()
     
-    résultat= result_operation ( nomber1, nomber2, operation)
+    result= result_operation ( nomber1, nomber2, operation)
     if result is not None:
         print(f"result  : {result}")
 if __name__== "__main__":
