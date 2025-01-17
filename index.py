@@ -36,8 +36,6 @@ def check_int(a):
 
 #CESAR and Belqiss'S FUNCTIONS ------------------------------------------------------------------------------------------------------
 
-import os
-
 def operation_type():
     while True:
         operator= input("Entrez le type d'opération désiré (+, -, *, /, %, //, **) : ")
