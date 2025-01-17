@@ -3,18 +3,26 @@ import os
 #SAMY'S FUNCTIONS ------------------------------------------------------------------------------------------------------
 
 def error_management(a,b,operator):
-    if type(a) not in [int, float, complex] or type(b) not in [int, float,complex]:
-        print("Error: a and b must be numbers")
-        math.expression()
-    elif operator not in ["+", "-", "*", "/","//","%","**"]:
-        print("Error: operator must be '+' or '-' or '*' or '/' or '//' or '%' or '**'")
-        math.expression()
-    elif operator == "/" and b == 0:
-        print("Error: division by zero")
-        math.expression()
+    # if type(a) not in [int, float] or type(b) not in [int, float]:
+    #     print("Error: a and b must be numbers")
+    #     stop_reload()
+    # elif operator not in ["+", "-", "*", "/","//","%","**"]:
+    #     print("Error: operator must be '+' or '-' or '*' or '/' or '//' or '%' or '**'")
+    
+    if operator == "/" and b == 0 or a == 0:
+        print("!!!!!! Error: division by zero impossible !!!! xO \n\n")
+        stop_reload()
+        #raise ZeroDivisionError (I know this typeError message but i prefer print so i can reload the program)
+    elif operator == "%" and b == 0 or a == 0 :
+        print("!!!!!!! Error: modulo by zero impossible !!!! xO \n\n")
+        stop_reload()
+        #raise ZeroDivisionError (I know this typeError message but i prefer print so i can reload the program)
+    elif operator == "//" and b == 0 or a == 0:
+        print("!!!!!!! Error: division by zero impossible !!!! xO \n\n")
+        stop_reload()
         #raise ZeroDivisionError (I know this typeError message but i prefer print so i can reload the program)
     else:
-        pass
+        return
 
 def clear_history(history:list):
     history.clear()
@@ -34,121 +42,85 @@ def check_int(a):
         pass
     return a
 
-#CESAR and Belqiss'S FUNCTIONS ------------------------------------------------------------------------------------------------------
+#Balqiss'S FUNCTIONS ------------------------------------------------------------------------------------------------------
 
 def operation_type():
     while True:
-        operator= input("Entrez le type d'opération désiré (+, -, *, /, %, //, **) : ")
+        operator= input("Choose operator (+, -, *, /, %, //, **) : ")
         #return error_management(1,1,operator)
         if operator in ["+", "-", "*", "/", "%", "//", "**"]:
            return operator
         else:
-            print("Erreur : opération invalide. Veuillez choisir parmi (+, -, *, /, %, //, **).")
+            print("Error : invalid choice. Please choose between (((  +, -, *, /, %, //, ** ))) only.\n")
 
+
+def result_expression(num_a,num_b, operator):
+    
+    error_management(num_a, num_b, operator)
+    
+    if operator == "+":
+        result = num_a + num_b
+    elif operator == "-":
+        result = num_a - num_b
+    elif operator == "*":
+        result = num_a * num_b
+    elif operator == "**":
+        result = num_a ** num_b
+    elif operator == "/":
+        result = num_a / num_b
+    elif operator == "//":
+        result = num_a // num_b
+    elif operator == "%":
+        result = num_a % num_b
+    else:      
+        return
+    
+    
+    print("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------")
+    print (f"                                                                  [[[[[  RESULT: {check_int(result)}  ]]]]]")               
+    print("------------------------------------------------------------------------------------------------------------------------------------------------------------------------ \n\n")
+    stop_reload()
+    # math_expression() cleaned & optimized by this function 
+
+# Cesar's functions: ---------------------------------------------------------------------------------------  
+        
 def stop_reload():
     while True:
-        reload = input("Press enter to reload or press Q to quit:")
+        reload = input("                              *_*_*_*_*_*_*_*_*_*_*_*_*_   Press [ENTER]: RELOAD / Press [Q]: QUIT   *_*_*_*_*_*_*_*_*_*_*_*_*_  \n")
         if reload == "q" or reload =="Q":
             break
         else:
             if reload != "":
-                print("Incorrect entry. Press Enter to continue or Q to stop.")
+                print("------>")
             else:
                 math_expression()
-
-# ---------------------------------------------------------------------------------------
-
+                
+                
 def math_expression():
     
     try: 
-        
-        os.system('cls' if os.name == 'nt' else 'clear') #refresh terminal
+        os.system('cls' if os.name == 'nt' else 'clear') # refresh terminal
         
         num_a = float(input("\nChoose first number to operate : "))
         operator = operation_type()
         num_b = float(input("Choose second number : "))
-        print()
-        
-        #verif int or float not str
-        if (type(num_a) == float or type(num_a)== int) and (type(num_b) == float or type(num_b)== int): # or use 'isinstance'
+                 
+        #verif int or float no str permitted:       
+        if (type(num_a) == float or type(num_a)== int) and (type(num_b) == float or type(num_b)== int):
             
             os.system('cls' if os.name == 'nt' else 'clear')  # refresh terminal
             
-            print(f"Asked operation : {num_a} {operator} {num_b} \n")
+            print(f"Asked operation : {check_int(num_a)} {operator} {check_int(num_b)} \n")
             
-            #---------------------------------------------------------------------
-            # result with 'int' return checked
-            print("result : \n")
-            if operator == "+":
-                result = num_a + num_b
-                print (f"                  {check_int(result)} \n")             
-                # stop program or reload 
-                stop_reload()
-            
-            elif operator == "-":
-                result = num_a - num_b               
-                if isinstance(num_a, float) and isinstance(num_b, float):
-                    print (f"                  {int(result) if result.is_integer else result} \n")                   
-                elif isinstance(num_a, int) and isinstance(num_b, int):
-                    print(f"                      {num_a - num_b} \n")                               
-                # stop program or reload 
-                stop_reload()
-
-            elif operator == "*":
-                result = num_a * num_b               
-                if isinstance(num_a, float) and isinstance(num_b, float):
-                    print (f"                  {int(result) if result.is_integer else result} \n")                   
-                elif isinstance(num_a, int) and isinstance(num_b, int):
-                    print(f"                      {num_a * num_b} \n")               
-                # stop program or reload 
-                stop_reload()
-
-
-            elif operator == "/": # need to fix /0 value impossible
-                result = num_a / num_b               
-                if isinstance(num_a, float) and isinstance(num_b, float):
-                    print (f"                  {int(result) if result.is_integer else result} \n")                   
-                elif isinstance(num_a, int) and isinstance(num_b, int):
-                    print(f"                      {num_a / num_b} \n")               
-                # stop program or reload 
-                stop_reload()
-
-
-            elif operator == "//":
-                result = num_a // num_b               
-                if isinstance(num_a, float) and isinstance(num_b, float):
-                    print (f"                  {int(result) if result.is_integer else result} \n")                   
-                elif isinstance(num_a, int) and isinstance(num_b, int):
-                    print(f"                      {num_a // num_b} \n")               
-                # stop program or reload 
-                stop_reload()
-
-            elif operator == "**":
-                result = num_a ** num_b               
-                if isinstance(num_a, float) and isinstance(num_b, float):
-                    print (f"                  {int(result) if result.is_integer else result} \n")                   
-                elif isinstance(num_a, int) and isinstance(num_b, int):
-                    print(f"                      {num_a ** num_b} \n")               
-                # stop program or reload 
-                stop_reload()
-
-            elif operator == "%": # need to fix 0 value and float value impossible
-                result = num_a % num_b               
-                if isinstance(num_a, float) and isinstance(num_b, float):
-                    print (f"                  {int(result) if result.is_integer else result} \n")                   
-                elif isinstance(num_a, int) and isinstance(num_b, int):
-                    print(f"                      {num_a % num_b} \n")               
-                # stop program or reload 
-                stop_reload()
-
-            else:
-                print("Impossible result, non compliant operator.")
-                math_expression()
+            print(f" {result_expression(num_a, num_b, operator)}\n")
+            # result with 'int' return checking for return an int result if result is not a float.
+             # optimized by function ! I saveeed so much liiiiiiines xO
+                                  
         else: 
-            print("You can only choose des float or integers.")
-            math_expression()
+            print("You can only choose floats or integers.\n")
+            stop_reload()
     except ValueError:
-        print ("Error : Invalid syntax for operation. Retry lad.")
-        math_expression()
-    
+        print ("\n                                                     Error : Invalid syntax for operation. Please Retry.\n")
+        stop_reload()   
 math_expression()
+
