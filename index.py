@@ -33,44 +33,46 @@ def check_int(a):
     return a
 
 
-#CESAR'S FUNCTIONS ------------------------------------------------------------------------------------------------------
+#CESAR and Belqiss'S FUNCTIONS ------------------------------------------------------------------------------------------------------
+import os
+
 def operation_type():
-   v= input("operator: ") 
-   return v
-
-def check_int(x):    
-        if x %2 == 0:
-            int(x)
-        elif x %3 == 0:
-            int(x)
-        elif x %5 == 0:
-            int(x)
-        elif x %7 == 0:
-            int(x)
+    while True:
+        operator= input("Entrez le type d'opération désiré (+, -, *, /, %, //, **) : ")
+        if operator in ["+", "-", "*", "/", "%", "//", "**"]:
+            return operator
         else:
-            float(x)
-                
+            print("Erreur : opération invalide. Veuillez choisir parmi (+, -, *, /, %, //, **).")
 
-
-
-def math_expression(num_a, num_b, v):
+# ---------------------------------------------------------------------------------------
+def math_expression():
     try: 
-        os.system('cls' if os.name == 'nt' else 'clear')
+        
+        os.system('cls' if os.name == 'nt' else 'clear') #refresh terminal
+        
         num_a = float(input("\nChoose first number to operate : "))
-        v= operation_type()
+        operator = operation_type()
         num_b = float(input("Choose second number : "))
         print()
         
+        #verif int or float not str
         if (type(num_a) == float or type(num_a)== int) and (type(num_b) == float or type(num_b)== int): # or use 'isinstance'
-            check_int(num_a)
-            check_int(num_b) #Don't work (check) 
-            os.system('cls' if os.name == 'nt' else 'clear')
-            print(f"Asked operation : {num_a} {v} {num_b} \n")
+            
+            os.system('cls' if os.name == 'nt' else 'clear')  # refresh terminal
+            
+            print(f"Asked operation : {num_a} {operator} {num_b} \n")
+            
+            #---------------------------------------------------------------------
+            # result with 'int' return checked
             print("result : \n")
-               
-            if v == "+":
-                print(f"                      {num_a + num_b}")
-                print()
+            if operator == "+":
+                result = num_a + num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a + num_b} \n")               
+                
+                # stop program or reload 
                 while True:
                     reload = input("Press enter to reload or press Q to quit:")
                     if reload == "q" or reload =="Q":
@@ -80,9 +82,14 @@ def math_expression(num_a, num_b, v):
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "-":
-                print(f"                      {num_a - num_b}")
-                print()
+            elif operator == "-":
+                result = num_a - num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a - num_b} \n")               
+                
+                # stop program or reload 
                 while True:
                     reload = input("Press enter to reload or press Q to quit:")
                     if reload == "q" or reload =="Q":
@@ -92,9 +99,14 @@ def math_expression(num_a, num_b, v):
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "*":
-                print(f"                      {num_a * num_b}")
-                print()
+            elif operator == "*":
+                result = num_a * num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a * num_b} \n")               
+                
+                # stop program or reload 
                 while True:
                     reload = input("Press enter to reload or press Q to quit:")
                     if reload == "q" or reload =="Q":
@@ -104,9 +116,31 @@ def math_expression(num_a, num_b, v):
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "/":
-                print(f"                      {num_a / num_b}")
-                print()
+            elif operator == "/": # need to fix /0 value impossible
+                result = num_a / num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a / num_b} \n")               
+                
+                # stop program or reload 
+                while True:
+                    reload = input("Press enter to reload or press Q to quit:")
+                    if reload == "q" or reload =="Q":
+                        break
+                    else:
+                        if reload != "":
+                            print("Incorrect entry. Press Enter to continue or Q to stop.")
+                        else:
+                            math_expression()            
+            elif operator == "//":
+                result = num_a // num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a // num_b} \n")               
+                
+                # stop program or reload 
                 while True:
                     reload = input("Press enter to reload or press Q to quit:")
                     if reload == "q" or reload =="Q":
@@ -116,9 +150,14 @@ def math_expression(num_a, num_b, v):
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "//":
-                print(f"                      {num_a // num_b}")
-                print()
+            elif operator == "**":
+                result = num_a ** num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a ** num_b} \n")               
+                
+                # stop program or reload 
                 while True:
                     reload = input("Press enter to reload or press Q to quit:")
                     if reload == "q" or reload =="Q":
@@ -128,9 +167,14 @@ def math_expression(num_a, num_b, v):
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
                             math_expression()
-            elif v == "**":
-                cloud = print(f"                      {num_a ** num_b}")
-                print()
+            elif operator == "%": # need to fix 0 value and float value impossible
+                result = num_a % num_b               
+                if isinstance(num_a, float) and isinstance(num_b, float):
+                    print (f"                  {int(result) if result.is_integer else result} \n")                   
+                elif isinstance(num_a, int) and isinstance(num_b, int):
+                    print(f"                      {num_a % num_b} \n")               
+                
+                # stop program or reload 
                 while True:
                     reload = input("Press enter to reload or press Q to quit:")
                     if reload == "q" or reload =="Q":
@@ -139,19 +183,7 @@ def math_expression(num_a, num_b, v):
                         if reload != "":
                             print("Incorrect entry. Press Enter to continue or Q to stop.")
                         else:
-                            math_expression()
-            elif v == "%":
-                print(f"                      {num_a % num_b}")
-                print()
-                while True:
-                    reload = input("Press enter to reload or press Q to quit:")
-                    if reload == "q" or reload =="Q":
-                        break
-                    else:
-                        if reload != "":
-                            print("Incorrect entry. Press Enter to continue or Q to stop.")
-                        else:
-                            math_expression()
+                            math_expression()           
             else:
                 print("Impossible result, non compliant operator.")
                 math_expression()
@@ -161,6 +193,6 @@ def math_expression(num_a, num_b, v):
     except ValueError:
         print ("Error : Invalid syntax for operation. Retry lad.")
         math_expression()
-        
-        
+    
 math_expression()
+# --------------------------------------------------------------------------------------------------
