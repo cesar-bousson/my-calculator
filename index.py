@@ -1,21 +1,25 @@
 import os
+import time
 
 #SAMY'S FUNCTIONS --------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 def error_management(a,b,operator):
-    if operator == "/" and b == 0 or a == 0:
-        print("!!!!!! Error: division by zero impossible !!!! xO \n\n")
-        stop_relaunch()
-    elif operator == "%" and b == 0 or a == 0 :
-        print("!!!!!!! Error: modulo by zero impossible !!!! xO \n\n")
-        stop_relaunch()
-        #raise ZeroDivisionError (I know this typeError message but i prefer print so i can relaunch the program)
-    elif operator == "//" and b == 0 or a == 0:
-        print("!!!!!!! Error: division by zero impossible !!!! xO \n\n")
-        stop_relaunch()
-    else:
-        return
-    #or : if operator in ["/", "%", "//"] and b == 0:
+    # if operator == "/" and b == 0 or a == 0:
+    #     print("!!!!!! Error: division by zero impossible !!!! xO \n\n")
+    #     stop_relaunch()
+    # elif operator == "%" and b == 0 or a == 0 :
+    #     print("!!!!!!! Error: modulo by zero impossible !!!! xO \n\n")
+    #     stop_relaunch()
+    #     #raise ZeroDivisionError (I know this typeError message but i prefer print so i can relaunch the program)
+    # elif operator == "//" and b == 0 or a == 0:
+    #     print("!!!!!!! Error: division by zero impossible !!!! xO \n\n")
+    #     stop_relaunch()
+    # else:
+    #     return
+    if operator in ["/", "%", "//"] and b == 0 or a == 0:
+        print("Error : Division by 0.")
+        time.sleep(5)    
+        math_expression()
 
 def check_int(a):
     # float(a)
@@ -134,5 +138,6 @@ def math_expression(): # main loop
     except ValueError:
         print ("\n                                                     Error : Invalid syntax for operation. Please Retry.\n")
         stop_relaunch()   
+
 math_expression()
 
